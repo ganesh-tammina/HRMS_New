@@ -1,0 +1,166 @@
+<div class="uploads-page">
+
+    <!-- HEADER -->
+    <div class="page-header mb-4">
+        <h4>Uploads</h4>
+        <p class="text-muted">Bulk upload master data using Excel files</p>
+    </div>
+
+    <!-- UPLOAD CARD -->
+    <div class="card uploads-card">
+
+        <h6 class="section-title">Bulk Uploads (Admin)</h6>
+
+        <!-- ========== EMPLOYEES ========== -->
+        <div class="upload-section">
+            <div class="upload-left">
+                <div class="icon-badge blue">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div>
+                    <h6>Employees</h6>
+                    <p>Upload employee master Excel</p>
+                    <span class="sample-link" href="#">Download Sample</span>
+                </div>
+            </div>
+
+            <div class="upload-right">
+                <label class="file-box">
+                    <input type="file" accept=".xls,.xlsx" hidden (change)="onFileSelect($event,'employees')" />
+                    Choose File
+                </label>
+
+                <span class="file-name" *ngIf="files.employees">
+                    {{ files.employees.name }}
+                    <i class="bi bi-x-circle" (click)="removeFile('employees')"></i>
+                </span>
+
+                <button class="btn btn-primary" (click)="upload('employees')" [disabled]="!files.employees">
+                    Upload
+                </button>
+            </div>
+        </div>
+
+        <div class="progress" *ngIf="progress.employees > 0">
+            <div class="progress-bar" [style.width.%]="progress.employees">
+                {{progress.employees}}%
+            </div>
+        </div>
+
+        <!-- ========== HOLIDAYS ========== -->
+        <div class="upload-section">
+            <div class="upload-left">
+                <div class="icon-badge green">
+                    <i class="bi bi-calendar-event"></i>
+                </div>
+                <div>
+                    <h6>Holidays</h6>
+                    <p>Upload holidays Excel</p>
+                    <span class="sample-link" href="#">Download Sample</span>
+                </div>
+            </div>
+
+            <div class="upload-right">
+                <label class="file-box">
+                    <input type="file" accept=".xls,.xlsx" hidden (change)="onFileSelect($event,'holidays')" />
+                    Choose File
+                </label>
+
+                <span class="file-name" *ngIf="files.holidays">
+                    {{ files.holidays.name }}
+                    <i class="bi bi-x-circle" (click)="removeFile('holidays')"></i>
+                </span>
+
+                <button class="btn btn-primary" (click)="upload('holidays')" [disabled]="!files.holidays">
+                    Upload
+                </button>
+            </div>
+        </div>
+
+        <div class="progress" *ngIf="progress.holidays > 0">
+            <div class="progress-bar" [style.width.%]="progress.holidays">
+                {{progress.holidays}}%
+            </div>
+        </div>
+
+        <!-- ========== PAYROLL ========== -->
+        <div class="upload-section">
+            <div class="upload-left">
+                <div class="icon-badge purple">
+                    <i class="bi bi-cash-stack"></i>
+                </div>
+                <div>
+                    <h6>Payroll</h6>
+                    <p>Upload payroll Excel</p>
+                    <span class="sample-link" href="#">Download Sample</span>
+                </div>
+            </div>
+
+            <div class="upload-right">
+                <label class="file-box">
+                    <input type="file" accept=".xls,.xlsx" hidden (change)="onFileSelect($event,'payroll')" />
+                    Choose File
+                </label>
+
+                <span class="file-name" *ngIf="files.payroll">
+                    {{ files.payroll.name }}
+                    <i class="bi bi-x-circle" (click)="removeFile('payroll')"></i>
+                </span>
+
+                <button class="btn btn-primary" (click)="upload('payroll')" [disabled]="!files.payroll">
+                    Upload
+                </button>
+            </div>
+        </div>
+
+        <div class="progress" *ngIf="progress.payroll > 0">
+            <div class="progress-bar" [style.width.%]="progress.payroll">
+                {{progress.payroll}}%
+            </div>
+        </div>
+
+    </div>
+
+    <!-- HISTORY TABLE -->
+    <div class="card uploads-card mt-4">
+        <h6 class="section-title">Upload History</h6>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>File Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let h of history">
+                    <td>{{h.type}}</td>
+                    <td>{{h.file}}</td>
+                    <td>{{h.date}}</td>
+                    <td>
+                        <span class="badge bg-success">Success</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+
+    <div class="toast align-items-center text-white" [class.bg-success]="toast.type === 'success'"
+        [class.bg-danger]="toast.type === 'error'" [class.show]="toast.show" role="alert">
+
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ toast.message }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" (click)="hideToast()">
+            </button>
+        </div>
+    </div>
+
+</div>

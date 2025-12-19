@@ -1,0 +1,135 @@
+<div class="dashboard-layout">
+
+    <!-- MOBILE TOP BAR -->
+    <nav class="navbar navbar-dark bg-primary d-md-none px-3">
+        <button class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+            <i class="bi bi-list"></i>
+        </button>
+        <span class="text-white fw-semibold">HRMS</span>
+    </nav>
+
+    <!-- MOBILE OFFCANVAS SIDEBAR -->
+    <div class="offcanvas offcanvas-start bg-dark text-white" id="mobileSidebar">
+        <div class="offcanvas-header">
+            <h5>Tech Tammina</h5>
+            <button class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <a class="nav-link text-white">Dashboard</a>
+            <a class="nav-link text-white">Employees</a>
+            <a class="nav-link text-white">Attendance</a>
+            <a class="nav-link text-white">Timesheets</a>
+        </div>
+    </div>
+
+    <!-- DESKTOP SIDEBAR -->
+    <aside class="sidebar d-none d-md-flex" [class.collapsed]="isCollapsed">
+
+        <!-- SIDEBAR HEADER -->
+        <div class="sidebar-header">
+            <span class="brand" *ngIf="!isCollapsed">Tech Tammina</span>
+
+            <!-- TOGGLE -->
+            <i class="bi bi-list toggle" title="Toggle Sidebar" (click)="toggleSidebar()">==
+            </i>
+        </div>
+
+        <!-- MENU -->
+        <ul class="nav flex-column sidebar-menu">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+                    <i class="bi bi-speedometer2"></i>
+                    <span *ngIf="!isCollapsed">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/employees" routerLinkActive="active">
+                    <i class="bi bi-people"></i>
+                    <span *ngIf="!isCollapsed">Employees</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/attendance" routerLinkActive="active">
+                    <i class="bi bi-calendar-check"></i>
+                    <span *ngIf="!isCollapsed">Attendance</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/timesheets" routerLinkActive="active">
+                    <i class="bi bi-clock-history"></i>
+                    <span *ngIf="!isCollapsed">Timesheets</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/leaves" routerLinkActive="active">
+                    <i class="bi bi-clock-history"></i>
+                    <span *ngIf="!isCollapsed">Leaves</span>
+                </a>
+            </li>
+            <li class="nav-item finance-menu">
+
+                <!-- PARENT -->
+                <a class="nav-link" href="javascript:void(0)" (click)="toggleFinance()">
+
+                    <i class="bi bi-cash-stack"></i>
+                    <span *ngIf="!isCollapsed">My Finance</span>
+
+                    <i *ngIf="!isCollapsed" class="bi bi-chevron-down ms-auto" [class.rotate]="isFinanceOpen">
+                    </i>
+                </a>
+
+                <!-- SUB MENU -->
+                <ul class="submenu" *ngIf="isFinanceOpen && !isCollapsed">
+                    <li>
+                        <a class="nav-link" routerLink="/finance/payroll" routerLinkActive="active">
+                            Payroll
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" routerLink="/finance/salary" routerLinkActive="active">
+                            Salary
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/uploads" routerLinkActive="active">
+                    <i class="bi bi-clock-history"></i>
+                    <span *ngIf="!isCollapsed">Uploads</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/master" routerLinkActive="active">
+                    <i class="bi bi-clock-history"></i>
+                    <span *ngIf="!isCollapsed">Master</span>
+                </a>
+            </li>
+        </ul>
+
+    </aside>
+
+    <!-- MAIN AREA -->
+    <div class="main-content">
+
+        <!-- TOP HEADER -->
+        <header class="topbar">
+            <h6 class="mb-0">Tech Tammina</h6>
+
+            <div class="top-actions">
+                <i class="bi bi-bell"></i>
+                <img src="assets/user.png" class="avatar">
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <main class="p-4">
+            <router-outlet></router-outlet>
+        </main>
+
+    </div>
+</div>
