@@ -1,1 +1,241 @@
-<p>attendance works!</p>
+<div class="attendance-wrapper">
+
+    <!-- TOP SECTION -->
+    <div class="row g-3 mt-2">
+
+        <!-- ATTENDANCE STATS -->
+        <div class="col-md-4">
+            <div class="attendance-stats-card">
+
+                <!-- HEADER -->
+                <div class="card-header">
+                    <div>
+                        <h6>Attendance Stats</h6>
+                        <span class="sub">Last Week</span>
+                    </div>
+                    <i class="bi bi-info-circle"></i>
+                </div>
+
+                <!-- BODY -->
+                <div class="card-body">
+
+                    <!-- ROW 1 -->
+                    <div class="stat-row">
+                        <div class="user">
+                            <div class="avatar blue">👤</div>
+                            <span>Me</span>
+                        </div>
+
+                        <div class="stat">
+                            <span class="label">AVG HRS/DAY</span>
+                            <div class="value">
+                                <i class="bi bi-clock"></i>
+                                <span>8h 44m</span>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <span class="label">ON TIME ARRIVAL</span>
+                            <div class="value green">
+                                <span>88%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROW 2 -->
+                    <div class="stat-row">
+                        <div class="user">
+                            <div class="avatar gray">👤</div>
+                            <span>My Team</span>
+                        </div>
+
+                        <div class="stat">
+                            <span class="label">AVG HRS/DAY</span>
+                            <div class="value">
+                                <i class="bi bi-clock"></i>
+                                <span>8h 44m</span>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <span class="label">ON TIME ARRIVAL</span>
+                            <div class="value green">
+                                <span>88%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TIMINGS -->
+        <div class="col-md-4">
+            <div class="timings-card">
+
+                <!-- HEADER -->
+                <div class="timings-header">
+                    <h6>Timings</h6>
+                    <span class="date-pill">Date: 15-12-2025</span>
+                </div>
+
+                <!-- SHIFT -->
+                <div class="shift-row">
+                    <div class="shift-icon">
+                        <i class="bi bi-sun"></i>
+                    </div>
+                    <div class="shift-info">
+                        <span class="label">Shift :</span>
+                        <span class="value">09:00 AM - 06:00 PM</span>
+                    </div>
+                </div>
+
+                <!-- DAYS -->
+                <div class="days-row">
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span class="active">Fri</span>
+                    <span>Sat</span>
+                    <span>Sun</span>
+                </div>
+
+                <!-- TODAY -->
+                <div class="today-row">
+                    <span class="today-label">Today :</span>
+                    <span class="today-time">10:00 - 19:00</span>
+                </div>
+
+                <!-- PROGRESS -->
+                <div class="progress-wrapper">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <!-- FOOTER -->
+                <div class="timings-footer">
+                    <span>Duration: 9hours</span>
+                    <span class="remaining">60mins</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TODAY -->
+        <div class="col-md-4">
+            <div class="today-card">
+
+                <!-- LEFT CONTENT -->
+                <div class="today-left">
+                    <h6>Today</h6>
+
+                    <p class="info">
+                        You have not check-in <br />
+                        Yourself as present today!
+                    </p>
+
+                    <p class="time-left">
+                        Time Left :
+                        <span class="danger">1006s</span>
+                    </p>
+
+                    <button class="btn-checkin">
+                        Check - In
+                    </button>
+
+                    <div class="request-actions">
+                        <button class="btn-outline">WFH</button>
+                        <button class="btn-outline">Partial Day Request</button>
+                    </div>
+
+                    <p class="previous">
+                        Previous Day : <strong>9h 28m 30s</strong>
+                    </p>
+                </div>
+
+                <!-- RIGHT TIMER -->
+                <div class="today-right">
+                    <div class="progress-circle">
+                        <span class="time">00:00:00</span>
+                        <span class="label">Work Time</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- LOGS -->
+    <div class="logs-section mt-4">
+
+        <div class="logs-header">
+            <h6>Logs & Requests</h6>
+
+            <div class="logs-tabs">
+                <button class="active">Attendance Log</button>
+                <button>Calendar</button>
+            </div>
+        </div>
+
+        <div class="logs-filter">
+            <span class="active">30 DAYS</span>
+            <span>AUG</span>
+            <span>JUL</span>
+            <span>JUN</span>
+            <span>MAY</span>
+            <span>APR</span>
+            <span>MAR</span>
+        </div>
+
+        <table class="logs-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Attendance Visual</th>
+                    <th>Arrival</th>
+                    <th>Departure</th>
+                    <th>Effective Time</th>
+                    <th>Gross Time</th>
+                    <th>Log</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Tue, 11 Sept</td>
+                    <td>
+                        <div class="visual-bar"></div>
+                    </td>
+                    <td class="late">09:28 AM</td>
+                    <td>06:11 PM</td>
+                    <td>8h 21m</td>
+                    <td>8h 27m</td>
+                    <td><span class="status-dot"></span></td>
+                </tr>
+
+                <tr>
+                    <td>Mon, 10 Sept</td>
+                    <td>
+                        <div class="visual-bar"></div>
+                    </td>
+                    <td>On Time</td>
+                    <td>07:17 PM</td>
+                    <td>9h 50m</td>
+                    <td>9h 52m</td>
+                    <td><span class="status-dot"></span></td>
+                </tr>
+
+                <tr>
+                    <td>Sun, 09 Sept</td>
+                    <td colspan="6" class="weekly-off">
+                        Full Day Weekly-Off
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

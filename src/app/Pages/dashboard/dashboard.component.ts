@@ -12,6 +12,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  kpis = [
+    { label: 'Total Employees', value: 1006 },
+    { label: 'Active This Month', value: '—' },
+    { label: 'Pending Leaves', value: 0 },
+    { label: 'Payroll Runs', value: 1 }
+  ];
   ngAfterViewInit(): void {
     new Chart('attendanceChart', {
       type: 'doughnut',

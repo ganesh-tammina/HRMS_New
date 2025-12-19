@@ -1,5 +1,74 @@
-.stat-card {
-  padding: 20px;
+.dashboard-page {
+  animation: fadeIn 0.4s ease;
+}
+
+/* HEADER */
+.dashboard-header h4 {
+  font-weight: 600;
+  color: #0f2b42;
+}
+
+/* KPI */
+.kpi-card {
   border-radius: 14px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  padding: 18px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+  }
+
+  h3 {
+    margin-top: 6px;
+    font-weight: 600;
+    color: #0f2b42;
+  }
+}
+
+/* COMMON CARDS */
+.simple-card,
+.chart-card {
+  border-radius: 14px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* CARD HEADER */
+.card-header {
+  background: transparent;
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* CHART PLACEHOLDER */
+.chart-placeholder {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* FORM */
+.form-control {
+  font-size: 13px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

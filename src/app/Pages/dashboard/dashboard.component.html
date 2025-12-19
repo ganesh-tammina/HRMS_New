@@ -1,16 +1,119 @@
-<div class="row g-4">
+<div class="dashboard-page">
 
-    <div class="col-md-3">
-        <div class="card stat-card">
-            <h6>Employees</h6>
-            <h3>124</h3>
+    <!-- HEADER -->
+    <div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+        <h4 class="mb-0">Dashboard</h4>
+    </div>
+
+    <!-- KPI CARDS -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3" *ngFor="let kpi of kpis">
+            <div class="card kpi-card">
+                <p>{{ kpi.label }}</p>
+                <h3>{{ kpi.value }}</h3>
+            </div>
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="card p-3">
-            <h6>Attendance Overview</h6>
-            <canvas id="attendanceChart"></canvas>
+
+    <!-- CHARTS -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-8">
+            <div class="card chart-card">
+                <div class="card-header">Attendance - Monthly Trend</div>
+                <div class="card-body chart-placeholder">
+                    Chart will render here
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card chart-card">
+                <div class="card-header">Leaves - Distribution</div>
+                <div class="card-body chart-placeholder">
+                    Chart will render here
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAYROLL + ATTENDANCE -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-8">
+            <div class="card chart-card">
+                <div class="card-header">Payroll Overview (Last 6)</div>
+                <div class="card-body chart-placeholder">
+                    Chart will render here
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card simple-card">
+                <div class="card-header">Today's Attendance</div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">
+                        Unable to load attendance status
+                    </p>
+
+                    <button class="btn btn-success btn-sm me-2">
+                        Check In
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm">
+                        Check Out
+                    </button>
+                </div>
+            </div>
+
+            <!-- ANNOUNCEMENTS -->
+            <div class="card simple-card mt-3">
+                <div class="card-header d-flex justify-content-between">
+                    <span>Announcements</span>
+                    <span class="badge bg-success">Active</span>
+                </div>
+                <div class="card-body text-muted">
+                    No active announcements
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BIRTHDAYS -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <div class="card simple-card">
+                <div class="card-header d-flex justify-content-between">
+                    <span>Upcoming Birthdays</span>
+                    <span class="text-muted small">next 7 days</span>
+                </div>
+                <div class="card-body text-muted">
+                    No birthdays
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CREATE ANNOUNCEMENT -->
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card simple-card">
+                <div class="card-header d-flex justify-content-between">
+                    <span>Create Announcement</span>
+                    <span class="text-muted small">HR / Admin</span>
+                </div>
+                <div class="card-body">
+                    <input class="form-control mb-2" placeholder="Title">
+                    <textarea class="form-control mb-2" placeholder="Body"></textarea>
+
+                    <div class="d-flex gap-2">
+                        <input type="date" class="form-control">
+                        <input type="date" class="form-control">
+                        <button class="btn btn-primary">
+                            Publish
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
