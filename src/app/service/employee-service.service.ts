@@ -34,8 +34,11 @@ export class EmployeeStateService {
 
   // ✅ SEARCH EMPLOYEES
   searchEmployees(keyword: string): Observable<any[]> {
+    const params = new HttpParams().set('q', keyword);
+
     return this.http.get<any[]>(
-      `${this.apiUrl}/search?keyword=${keyword}`
+      `${this.apiUrl}/search/query`,
+      { params }
     );
   }
 
