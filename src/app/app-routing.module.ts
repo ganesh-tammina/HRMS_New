@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'finance/salary', component: SalaryComponent },
       { path: 'uploads', component: UploadsComponent },
       { path: 'master', component: MasterComponent },
+      { path: 'home', component:HomeComponent}
 
 
       // Placeholder for AttendanceComponent

@@ -18,7 +18,9 @@ import { UploadsComponent } from './Pages/uploads/uploads.component';
 import { MasterComponent } from './Pages/master/master.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { IonicModule } from '@ionic/angular';
 import { EmployeeInterceptorInterceptor } from './service/employee-interceptor.interceptor';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +38,15 @@ import { EmployeeInterceptorInterceptor } from './service/employee-interceptor.i
     SalaryComponent,
     UploadsComponent,
     MasterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IonicModule.forRoot(),
   ],
   providers: [
     {

@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeState.totalEmployees$
-      .subscribe(count => {
+      .subscribe((count:any) => {
         this.totalEmployees = count;
         console.log('Dashboard Total Employees:', count);
       });

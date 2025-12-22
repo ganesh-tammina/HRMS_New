@@ -36,6 +36,12 @@
 
         <!-- MENU -->
         <ul class="nav flex-column sidebar-menu">
+                <li class="nav-item">
+                        <a class="nav-link" href="\home">
+                            <i class="bi bi-speedometer2"></i>
+                            <span *ngIf="!isCollapsed">home</span>
+                        </a>
+                    </li>
             <li class="nav-item" (click)="navigateToDashboard()">
                 <a class="nav-link">
                     <i class="bi bi-speedometer2"></i>
