@@ -83,6 +83,10 @@
   padding: 16px;
   border: 1px solid #ABABAB;
   margin-bottom: 12px;
+  &:first-child {
+    margin-top: 12px;
+    margin-right: 12px;
+  }
   .border-bottom {
     border-bottom: 1px solid #E0E0E0
   }
@@ -165,7 +169,8 @@
         margin-top: 12px;
         ion-col {     
           min-width: max-content;
-          max-width: fit-content;     
+          max-width: fit-content;    
+          margin: 8px; 
           .card-box {
             width: max-content;
             padding: 16px 18px;
