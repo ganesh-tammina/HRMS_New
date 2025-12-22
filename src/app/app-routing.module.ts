@@ -11,6 +11,7 @@ import { FinanceComponent } from './finance/finance.component';
 import { PayrollComponent } from './finance/payroll/payroll.component';
 import { SalaryComponent } from './finance/salary/salary.component';
 import { UploadsComponent } from './Pages/uploads/uploads.component';
+import { MasterComponent } from './Pages/master/master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -30,7 +31,7 @@ const routes: Routes = [
       { path: 'finance/payroll', component: PayrollComponent },
       { path: 'finance/salary', component: SalaryComponent },
       { path: 'uploads', component: UploadsComponent },
-      { path: 'master', component: EmployeesComponent },
+      { path: 'master', component: MasterComponent },
 
 
       // Placeholder for AttendanceComponent

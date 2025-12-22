@@ -1,0 +1,122 @@
+.employees-page {
+  padding: 24px;
+  background: #f6f8fb;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+
+    .btn {
+      padding: 6px 14px;
+      font-size: 13px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  }
+}
+
+/* Search */
+.search-box {
+  margin-bottom: 16px;
+
+  input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+
+    &:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+  }
+}
+
+/* Table Card */
+.table-card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+      background: #f1f5f9;
+
+      th {
+        padding: 12px;
+        text-align: left;
+        font-size: 13px;
+        font-weight: 600;
+        color: #374151;
+      }
+    }
+
+    tbody {
+      tr {
+        transition: background 0.2s;
+
+        &:nth-child(even) {
+          background: #f9fafb;
+        }
+
+        &:hover {
+          background: #eef2ff;
+        }
+      }
+
+      td {
+        padding: 12px;
+        font-size: 13px;
+        color: #374151;
+      }
+    }
+  }
+}
+
+/* Action buttons */
+.actions-col {
+  display: flex;
+  gap: 8px;
+
+  .icon-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    border-radius: 4px;
+    transition: 0.2s;
+
+    &.edit:hover {
+      background: rgba(37, 99, 235, 0.1);
+    }
+
+    &.delete:hover {
+      background: rgba(220, 38, 38, 0.1);
+    }
+  }
+}

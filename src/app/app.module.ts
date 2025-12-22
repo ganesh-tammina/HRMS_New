@@ -16,6 +16,9 @@ import { PayrollComponent } from './finance/payroll/payroll.component';
 import { SalaryComponent } from './finance/salary/salary.component';
 import { UploadsComponent } from './Pages/uploads/uploads.component';
 import { MasterComponent } from './Pages/master/master.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { EmployeeInterceptorInterceptor } from './service/employee-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,9 +39,18 @@ import { MasterComponent } from './Pages/master/master.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:EmployeeInterceptorInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

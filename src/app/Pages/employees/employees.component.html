@@ -1,1 +1,55 @@
-<p>employees works!</p>
+<div class="employees-page">
+
+    <!-- Header -->
+    <div class="page-header">
+        <h2>Employees</h2>
+
+        <div class="actions">
+            <!-- <button class="btn btn-primary">Add</button> -->
+            <button class="btn btn-outline-success">Export Excel</button>
+            <button class="btn btn-outline-primary">Send Setup</button>
+            <button class="btn btn-warning">Set Password</button>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-box">
+        <input type="text" [(ngModel)]="searchKeyword" (input)="onSearch()"
+            placeholder="Search employees (name, email, empno)" />
+    </div>
+
+    <!-- Table -->
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>EmpNo</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Dept</th>
+                    <th>Desig</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let emp of employees">
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.EmployeeNumber}}</td>
+                    <td>{{emp.FullName}}</td>
+                    <td>{{emp.WorkEmail}}</td>
+                    <td>IT</td>
+                    <td>Manager</td>
+                    <td class="actions-col">
+                        <button class="icon-btn edit">✏️</button>
+                        <button class="icon-btn delete">🗑️</button>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
