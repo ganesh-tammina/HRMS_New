@@ -2,7 +2,7 @@
 
     <!-- HEADER -->
     <div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
-        <h4 class="mb-0">Dashboard</h4>
+        <h4 *ngIf="currentUser">Welcome {{currentUser.FullName}} {{currentUser.lastName}}</h4>
     </div>
 
     <!-- KPI CARDS -->

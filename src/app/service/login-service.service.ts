@@ -22,6 +22,7 @@ export class LoginServiceService {
   logout(): void {
     // 1️⃣ Remove token & user data
     localStorage.removeItem('token');
+    localStorage.removeItem('loggedInEmployee');
     localStorage.clear(); // optional if you store more data
 
     // 2️⃣ Redirect to login

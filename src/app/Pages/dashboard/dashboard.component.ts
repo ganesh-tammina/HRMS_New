@@ -9,6 +9,7 @@ import { EmployeeStateService } from '../../service/employee-service.service';
 })
 export class DashboardComponent implements OnInit {
   totalEmployees = 0;
+  currentUser: any = {}
   constructor(private employeeState: EmployeeStateService) { }
 
   ngOnInit(): void {
@@ -17,6 +18,13 @@ export class DashboardComponent implements OnInit {
         this.totalEmployees = count;
         console.log('Dashboard Total Employees:', count);
       });
+
+    this.currentUser = localStorage.getItem('loggedInEmployee');
+    if (this.currentUser) {
+      this.currentUser = JSON.parse(this.currentUser);
+      console.log('Current User:', this.currentUser);
+    }
+
   }
 
   ngAfterViewInit(): void {
