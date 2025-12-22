@@ -1,123 +1,268 @@
-<div class="leaves-page">
+<ion-header [translucent]="true">
+  <!-- <app-employee-header></app-employee-header> -->
+</ion-header>
 
-    <!-- Header -->
-    <div class="page-header">
-        <h2>Leaves</h2>
-        <button class="btn-primary">Request Leave</button>
+<ion-content class="leaves-block">
+
+  <!-- Request Leave Button -->
+  <div class="request-btn">
+    <ion-button >
+      Request Leave
+    </ion-button>
+  </div>
+
+  <!-- Apply Leave Modal -->
+  <ion-modal  class="custom-popup">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Apply Leave</ion-title>
+          <ion-buttons slot="end">
+            <ion-button >
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <form class="form-block">
+          <div>
+            <label>Leave Type</label>
+            <ion-select formControlName="leave_type" placeholder="Select Leave Type">
+              <ion-select-option value="CASUAL">Casual Leaves</ion-select-option>
+              <ion-select-option value="MARRIAGE">Marriage Leaves</ion-select-option>
+              <ion-select-option value="COMP_OFF">Comp-Offs</ion-select-option>
+              <ion-select-option value="MEDICAL">Sick Leaves</ion-select-option>
+              <ion-select-option value="PAID">Paid Leaves</ion-select-option>
+              <ion-select-option value="UNPAID">Unpaid Leaves</ion-select-option>
+              </ion-select>
+          </div>
+          <div class="row-left">
+              <div class="from-input">
+                  <label>From</label>
+                  <ion-input id="from-input"
+                  readonly
+                ></ion-input>
+                  <ion-popover #datePopover trigger="from-input" show-backdrop="true">
+                      <ng-template>
+                        <ion-datetime
+                        formControlName="start_date"
+                      ></ion-datetime>               
+                      </ng-template>
+                    </ion-popover>
+                  
+                </div>
+      
+                <div class="to-input">
+                  <label>To</label>            
+                  <ion-input id="to-input"
+                    readonly
+                  ></ion-input>
+                <ion-popover #datePopover1 trigger="to-input" show-backdrop="true">
+                  <ng-template>
+                      <ion-datetime
+                      formControlName="end_date"
+                    ></ion-datetime>     
+                  </ng-template>
+                </ion-popover>
+                </div>
+          </div>
+         
+
+          <!-- Error Message for Date Validation -->
+          <ion-item lines="none">
+            <ion-label color="danger">End date cannot be before start date.</ion-label>
+          </ion-item>
+
+          <div  class="totalDays">
+            <p class="mt-0" color="medium">Total Days: REPLACE</p>
+          </div>
+
+          <div>
+            <label>Leave Reason</label>
+            <ion-textarea  formControlName="remarks"></ion-textarea>
+            <p>REPLACE/100 words</p>
+          </div>
+
+          <div>
+            <label>Notify</label>
+            <ion-input formControlName="notify" placeholder="Search employee"></ion-input>
+          </div>
+
+          <ion-button expand="block"  >
+            Request Leave
+          </ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Leave Balance Cards -->
+  <ion-grid class="card-tabs-block" >
+    <p class="card-header">Leave Balances</p>
+    <ion-row>
+      <ion-col size="2" class="card-block">
+        <p class="card-header">Casual Leaves</p>
+        <ion-img src="../../../assets/leave-icons/CL.svg"></ion-img>
+        <p class="number">0/12</p>
+        <p class="label">days available</p>
+      </ion-col>
+
+      <ion-col size="2" class="card-block">
+        <p class="card-header">Marriage Leaves</p>
+        <ion-img src="../../../assets/leave-icons/ML.svg"></ion-img>
+        <p class="number">0/2</p>
+        <p class="label">days available</p>
+      </ion-col>
+
+      <ion-col size="2" class="card-block">
+        <p class="card-header">Sick Leaves</p>
+        <ion-img src="../../../assets/leave-icons/SL.svg"></ion-img>
+        <p class="number">0/6</p>
+        <p class="label">days available</p>
+      </ion-col>
+
+      <ion-col size="2" class="card-block">
+        <p class="card-header">Comp Offs</p>
+        <ion-img src="../../../assets/leave-icons/CO.svg"></ion-img>
+        <p class="number">0/0</p>
+        <p class="label">days available</p>
+      </ion-col>
+
+      <ion-col size="2" class="card-block">
+        <p class="card-header">Paid Leaves</p>
+        <ion-img src="../../../assets/leave-icons/CO.svg"></ion-img>
+        <p class="number">0/0</p>
+        <p class="label">days available</p>
+      </ion-col>
+
+
+      <ion-col size="2" class="card-block">
+        <p class="card-header">Unpaid</p>
+        <ion-img src="../../../assets/leave-icons/UL.svg"></ion-img>
+        <p class="number">0/&infin;</p>
+        <p class="label">days available</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Leave History Table -->
+  <ion-grid class="card-tabs-block table-block">
+    <div class="row-space-between">
+      <div class="row-left">
+        <ion-img src="../../../assets/leave-icons/CL.svg"></ion-img>
+        <p class="header-title">Leave History</p>
+      </div>
+      <p>Total: REPLACE</p>
     </div>
 
-    <!-- Leave Balances -->
-    <div class="section">
-        <h3>Leave Balances</h3>
+    <!-- Check if there are leaves -->
+    <ng-container >
+      <ion-row class="table-header">
+        <ion-col size="2"><p>Period</p></ion-col>
+        <ion-col size="2"><p>Leave Type</p></ion-col>
+        <ion-col size="1"><p>Days</p></ion-col>
+        <ion-col size="2"><p>Reason</p></ion-col>
+        <ion-col size="2"><p>Submitted On</p></ion-col>
+        <ion-col size="2"><p>Status</p></ion-col>
+        <ion-col size="1"><p>Action</p></ion-col>
+      </ion-row>
 
-        <div class="balance-cards">
-            <div class="balance-card purple">
-                <div class="icon">🌴</div>
-                <h4>Casual Leaves</h4>
-                <p class="count">1 / 12</p>
-                <span>days available</span>
-            </div>
+      <ion-row class="table-cell" >
+        <ion-col size="2">
+          <p>REPLACE - REPLACE</p>
+        </ion-col>
+        <ion-col size="2"><p>REPLACE</p></ion-col>
+        <ion-col size="1"><p>REPLACE</p></ion-col>
+        <ion-col size="2"><p>REPLACE</p></ion-col>
+        <ion-col size="2"><p>REPLACE</p></ion-col>
+        <ion-col size="2">
+          <!-- <p [ngClass]="{
+              'pending': leave.status === 'PENDING',
+              'approved': leave.status === 'APPROVED',
+              'rejected': leave.status === 'REJECTED'
+            }"> --><p>
+            REPLACE
+          </p>
+        </ion-col>
 
-            <div class="balance-card orange">
-                <div class="icon">💍</div>
-                <h4>Marriage Leaves</h4>
-                <p class="count">1.17 / 1.17</p>
-                <span>days available</span>
-            </div>
+        <!-- Action Buttons -->
+        <ion-col size="1">
+          <ng-container 
+          >
+            <ion-button fill="clear" color="danger" >
+              <ion-icon name="close-circle-outline"></ion-icon>
+              Cancel
+            </ion-button>
+          </ng-container>
+          <ng-template #viewTemplate>
+            <ion-button fill="clear" color="primary" >
+              <ion-icon name="eye-outline"></ion-icon>
+              View
+            </ion-button>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    </ng-container>
 
-            <div class="balance-card green">
-                <div class="icon">🤒</div>
-                <h4>Sick Leaves</h4>
-                <p class="count">1 / 3</p>
-                <span>days available</span>
-            </div>
+    <!-- No Leaves -->
+    <ng-template #noLeavesInside>
+      <ion-row class="no-leaves-row">
+        <ion-col size="12" class="ion-text-center">
+          <p class="no-data-text">No leave requests found</p>
+        </ion-col>
+      </ion-row>
+    </ng-template>
+  </ion-grid>
 
-            <div class="balance-card blue">
-                <div class="icon">⏱️</div>
-                <h4>Comp Offs</h4>
-                <p class="count">0 / 3</p>
-                <span>days available</span>
-            </div>
+  <!-- Leave View/Cancel Popup -->
+  <ion-modal   class="custom-popup">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>
+            REPLACE
+          </ion-title>
+          <ion-buttons slot="end">
+            <ion-button >
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
 
-            <div class="balance-card red">
-                <div class="icon">🚫</div>
-                <h4>Unpaid Leaves</h4>
-                <p class="count">∞</p>
-                <span>days available</span>
-            </div>
-        </div>
-    </div>
+      <ion-content class="ion-padding">
+        <!-- Cancel Leave -->
+        <ng-container >
+          <p>Are you sure you want to cancel this leave request?</p>
+          <ion-button expand="block" color="danger" >Confirm Cancel</ion-button>
+        </ng-container>
 
-    <!-- Leaves Table -->
-    <div class="section">
-        <div class="table-header">
-            <h3>Leaves</h3>
-            <span class="filter">Last 3 months</span>
-        </div>
+        <!-- View Leave Details -->
+        <ng-template #viewContent>
+          <h3>Leave Details</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label><strong>Type:</strong></ion-label>
+              <ion-text>REPLACE</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-label><strong>Period:</strong></ion-label>
+              <ion-text>REPLACE - REPLACE</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-label><strong>Reason:</strong></ion-label>
+              <ion-text>REPLACE</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-label><strong>Status:</strong></ion-label>
+              <ion-text>REPLACE</ion-text>
+            </ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
-        <table class="leaves-table">
-            <thead>
-                <tr>
-                    <th>Period</th>
-                    <th>Type</th>
-                    <th>Days</th>
-                    <th>Reason</th>
-                    <th>Submitted On</th>
-                    <th>Applied To</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>Aug 13 - Aug 14</td>
-                    <td><span class="tag green">Sick</span></td>
-                    <td>2</td>
-                    <td>Flu symptoms</td>
-                    <td>13-08-2023</td>
-                    <td>HR Upadhya</td>
-                    <td><span class="status approved">Approved</span></td>
-                </tr>
-
-                <tr>
-                    <td>Jul 27</td>
-                    <td><span class="tag purple">Casual</span></td>
-                    <td>1</td>
-                    <td>Personal work</td>
-                    <td>25-07-2023</td>
-                    <td>HR Upadhya</td>
-                    <td><span class="status rejected">Rejected</span></td>
-                </tr>
-
-                <tr>
-                    <td>Mar 22</td>
-                    <td><span class="tag orange">Marriage</span></td>
-                    <td>2</td>
-                    <td>Wedding</td>
-                    <td>20-02-2023</td>
-                    <td>HR Upadhya</td>
-                    <td><span class="status approved">Approved</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Bottom Cards -->
-    <div class="bottom-grid">
-        <div class="info-card">
-            <h4>Leave Requests</h4>
-            <p>Your leave request for Mar 10 has been approved</p>
-            <span class="status approved">Approved</span>
-            <small>1 day ago</small>
-        </div>
-
-        <div class="info-card">
-            <h4>Upcoming Holidays</h4>
-            <ul>
-                <li>🎄 Christmas <span>15 days left</span></li>
-                <li>🪔 Sankranti <span>33 days left</span></li>
-            </ul>
-        </div>
-    </div>
-
-</div>
+</ion-content>
