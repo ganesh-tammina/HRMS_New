@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  backgroundImageUrl: string = '../../assets/holidays-pics/christmas_pic.svg';
 
   constructor() { }
 
