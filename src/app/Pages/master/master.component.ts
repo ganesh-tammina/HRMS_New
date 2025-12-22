@@ -10,139 +10,61 @@ export class MasterComponent implements OnInit {
 
   activeTab = 'locations';
 
-  /* ========== LOCATIONS ========== */
-  locations: any[] = [];
-  showLocationForm = false;
-  locationName = '';
-  editingLocationId: number | null = null;
+  locations: any[] = []; departments: any[] = [];
+  designations: any[] = []; businessUnits: any[] = [];
+  legalEntities: any[] = []; costCenters: any[] = [];
 
-  /* ========== DEPARTMENTS ========== */
-  departments: any[] = [];
-  showDepartmentForm = false;
-  departmentName = '';
-  editingDepartmentId: number | null = null;
+  showLocationForm = false; showDepartmentForm = false;
+  showDesignationForm = false; showBusinessUnitForm = false;
 
-  constructor(private masterService: MasterService) { }
+  locationName = ''; departmentName = '';
+  designationName = ''; businessUnitName = '';
 
-  ngOnInit(): void {
-    this.loadLocations();
-  }
+  editingLocationId: any = null; editingDepartmentId: any = null;
+  editingDesignationId: any = null; editingBusinessUnitId: any = null;
 
-  /* ================= TAB ================= */
+  constructor(private service: MasterService) { }
+
+  ngOnInit() { this.loadLocations(); }
+
   setTab(tab: string) {
     this.activeTab = tab;
-
     if (tab === 'locations') this.loadLocations();
     if (tab === 'departments') this.loadDepartments();
+    if (tab === 'designations') this.loadDesignations();
+    if (tab === 'businessUnits') this.loadBusinessUnits();
   }
 
-  /* ================= LOCATIONS ================= */
-  loadLocations() {
-    this.masterService.getLocations().subscribe(res => {
-      this.locations = res;
-    });
-  }
+  loadLocations() { this.service.getLocations().subscribe(r => this.locations = r); }
+  loadDepartments() { this.service.getDepartments().subscribe(r => this.departments = r); }
+  loadDesignations() { this.service.getDesignations().subscribe(r => this.designations = r); }
+  loadBusinessUnits() { this.service.getBusinessUnits().subscribe(r => this.businessUnits = r); }
 
-  openAddLocation() {
-    this.showLocationForm = true;
-    this.locationName = '';
-    this.editingLocationId = null;
-  }
+  openAddLocation() { this.showLocationForm = true; this.editingLocationId = null; this.locationName = ''; }
+  saveLocation() { this.service.createLocation({ name: this.locationName }).subscribe(() => { this.loadLocations(); this.cancelLocation(); }); }
+  editLocation(i: any) { this.showLocationForm = true; this.locationName = i.name; this.editingLocationId = i.id; }
+  updateLocation() { this.service.updateLocation(this.editingLocationId, { name: this.locationName }).subscribe(() => { this.loadLocations(); this.cancelLocation(); }); }
+  deleteLocation(id: number) { this.service.deleteLocation(id).subscribe(() => this.loadLocations()); }
+  cancelLocation() { this.showLocationForm = false; }
 
-  saveLocation() {
-    if (!this.locationName.trim()) return;
+  openAddDepartment() { this.showDepartmentForm = true; this.editingDepartmentId = null; this.departmentName = ''; }
+  saveDepartment() { this.service.createDepartment({ name: this.departmentName }).subscribe(() => { this.loadDepartments(); this.cancelDepartment(); }); }
+  editDepartment(i: any) { this.showDepartmentForm = true; this.departmentName = i.name; this.editingDepartmentId = i.id; }
+  updateDepartment() { this.service.updateDepartment(this.editingDepartmentId, { name: this.departmentName }).subscribe(() => { this.loadDepartments(); this.cancelDepartment(); }); }
+  deleteDepartment(id: number) { this.service.deleteDepartment(id).subscribe(() => this.loadDepartments()); }
+  cancelDepartment() { this.showDepartmentForm = false; }
 
-    this.masterService
-      .createLocation({ name: this.locationName })
-      .subscribe(() => {
-        this.loadLocations();
-        this.cancelLocation();
-      });
-  }
+  openAddDesignation() { this.showDesignationForm = true; this.editingDesignationId = null; this.designationName = ''; }
+  saveDesignation() { this.service.createDesignation({ name: this.designationName }).subscribe(() => { this.loadDesignations(); this.cancelDesignation(); }); }
+  editDesignation(i: any) { this.showDesignationForm = true; this.designationName = i.name; this.editingDesignationId = i.id; }
+  updateDesignation() { this.service.updateDesignation(this.editingDesignationId, { name: this.designationName }).subscribe(() => { this.loadDesignations(); this.cancelDesignation(); }); }
+  deleteDesignation(id: number) { this.service.deleteDesignation(id).subscribe(() => this.loadDesignations()); }
+  cancelDesignation() { this.showDesignationForm = false; }
 
-  editLocation(item: any) {
-    this.showLocationForm = true;
-    this.locationName = item.name;
-    this.editingLocationId = item.id;
-  }
-
-  updateLocation() {
-    if (!this.editingLocationId) return;
-
-    this.masterService
-      .updateLocation(this.editingLocationId, { name: this.locationName })
-      .subscribe(() => {
-        this.loadLocations();
-        this.cancelLocation();
-      });
-  }
-
-  deleteLocation(id: number) {
-    if (!confirm('Delete location?')) return;
-
-    this.masterService.deleteLocation(id).subscribe(() => {
-      this.loadLocations();
-    });
-  }
-
-  cancelLocation() {
-    this.showLocationForm = false;
-    this.locationName = '';
-    this.editingLocationId = null;
-  }
-
-  /* ================= DEPARTMENTS ================= */
-  loadDepartments() {
-    this.masterService.getDepartments().subscribe(res => {
-      this.departments = res;
-    });
-  }
-
-  openAddDepartment() {
-    this.showDepartmentForm = true;
-    this.departmentName = '';
-    this.editingDepartmentId = null;
-  }
-
-  saveDepartment() {
-    if (!this.departmentName.trim()) return;
-
-    this.masterService
-      .createDepartment({ name: this.departmentName })
-      .subscribe(() => {
-        this.loadDepartments();
-        this.cancelDepartment();
-      });
-  }
-
-  editDepartment(item: any) {
-    this.showDepartmentForm = true;
-    this.departmentName = item.name;
-    this.editingDepartmentId = item.id;
-  }
-
-  updateDepartment() {
-    if (!this.editingDepartmentId) return;
-
-    this.masterService
-      .updateDepartment(this.editingDepartmentId, { name: this.departmentName })
-      .subscribe(() => {
-        this.loadDepartments();
-        this.cancelDepartment();
-      });
-  }
-
-  deleteDepartment(id: number) {
-    if (!confirm('Delete department?')) return;
-
-    this.masterService.deleteDepartment(id).subscribe(() => {
-      this.loadDepartments();
-    });
-  }
-
-  cancelDepartment() {
-    this.showDepartmentForm = false;
-    this.departmentName = '';
-    this.editingDepartmentId = null;
-  }
+  openAddBusinessUnit() { this.showBusinessUnitForm = true; this.editingBusinessUnitId = null; this.businessUnitName = ''; }
+  saveBusinessUnit() { this.service.createBusinessUnit({ name: this.businessUnitName }).subscribe(() => { this.loadBusinessUnits(); this.cancelBusinessUnit(); }); }
+  editBusinessUnit(i: any) { this.showBusinessUnitForm = true; this.businessUnitName = i.name; this.editingBusinessUnitId = i.id; }
+  updateBusinessUnit() { this.service.updateBusinessUnit(this.editingBusinessUnitId, { name: this.businessUnitName }).subscribe(() => { this.loadBusinessUnits(); this.cancelBusinessUnit(); }); }
+  deleteBusinessUnit(id: number) { this.service.deleteBusinessUnit(id).subscribe(() => this.loadBusinessUnits()); }
+  cancelBusinessUnit() { this.showBusinessUnitForm = false; }
 }

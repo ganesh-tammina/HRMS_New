@@ -10,7 +10,7 @@ import { decodeToken } from './Util/token.util';
 export class LoginServiceService {
 
 
-  private apiUrl = 'http://localhost:3000/api/login';
+  private apiUrl = 'http://localhost:3000/api/auth/login';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -19,7 +19,7 @@ export class LoginServiceService {
     return this.http.post<any>(this.apiUrl, loginData);
   }
 
-   logout(): void {
+  logout(): void {
     // 1️⃣ Remove token & user data
     localStorage.removeItem('token');
     localStorage.clear(); // optional if you store more data

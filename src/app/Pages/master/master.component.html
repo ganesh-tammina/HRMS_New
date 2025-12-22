@@ -1,87 +1,131 @@
 <div class="masters-wrapper">
 
-  <!-- HEADER -->
-  <div class="masters-header">
-    <h2>Masters</h2>
-    <p>Manage organization master data</p>
-  </div>
-
-  <!-- TABS -->
-  <ul class="masters-tabs">
-    <li [class.active]="activeTab==='locations'" (click)="setTab('locations')">Locations</li>
-    <li [class.active]="activeTab==='departments'" (click)="setTab('departments')">Departments</li>
-  </ul>
-
-  <!-- ================= LOCATIONS ================= -->
-  <div class="tab-card" *ngIf="activeTab==='locations'">
-
-    <div class="tab-header">
-      <h3>Locations</h3>
-      <button class="btn-primary" (click)="openAddLocation()">+ Add Location</button>
+    <!-- HEADER -->
+    <div class="masters-header">
+        <h2>Masters</h2>
+        <p>Manage organization master data</p>
     </div>
 
-    <div class="create-box" *ngIf="showLocationForm">
-      <input type="text" [(ngModel)]="locationName" placeholder="Location name">
+    <!-- TABS -->
+    <ul class="masters-tabs">
+        <li [class.active]="activeTab==='locations'" (click)="setTab('locations')">Locations</li>
+        <li [class.active]="activeTab==='departments'" (click)="setTab('departments')">Departments</li>
+        <li [class.active]="activeTab==='designations'" (click)="setTab('designations')">Designations</li>
+        <li [class.active]="activeTab==='businessUnits'" (click)="setTab('businessUnits')">Business Units</li>
+        <li [class.active]="activeTab==='legalEntities'" (click)="setTab('legalEntities')">Legal Entities</li>
+        <li [class.active]="activeTab==='costCenters'" (click)="setTab('costCenters')">Cost Centers</li>
+    </ul>
 
-      <div class="actions">
-        <button class="btn-primary"
-                *ngIf="!editingLocationId"
-                (click)="saveLocation()">Save</button>
+    <!-- ========== LOCATIONS ========== -->
+    <div class="tab-card" *ngIf="activeTab==='locations'">
+        <div class="tab-header">
+            <h3>Locations</h3>
+            <button class="btn-primary" (click)="openAddLocation()">+ Add Location</button>
+        </div>
 
-        <button class="btn-primary"
-                *ngIf="editingLocationId"
-                (click)="updateLocation()">Update</button>
+        <div class="create-box" *ngIf="showLocationForm">
+            <input [(ngModel)]="locationName" placeholder="Location name">
+            <div class="actions">
+                <button class="btn-primary" *ngIf="!editingLocationId" (click)="saveLocation()">Save</button>
+                <button class="btn-primary" *ngIf="editingLocationId" (click)="updateLocation()">Update</button>
+                <button class="btn-secondary" (click)="cancelLocation()">Cancel</button>
+            </div>
+        </div>
 
-        <button class="btn-secondary" (click)="cancelLocation()">Cancel</button>
-      </div>
+        <table class="masters-table" *ngIf="!showLocationForm">
+            <tr *ngFor="let item of locations">
+                <td>{{item.name}}</td>
+                <td>Active</td>
+                <td>
+                    <button (click)="editLocation(item)">✏️</button>
+                    <button (click)="deleteLocation(item.id)">🗑️</button>
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <table class="masters-table" *ngIf="!showLocationForm">
-      <tr *ngFor="let loc of locations">
-        <td>{{ loc.name }}</td>
-        <td><span class="status active">Active</span></td>
-        <td>
-          <button class="icon" (click)="editLocation(loc)">✏️</button>
-          <button class="icon" (click)="deleteLocation(loc.id)">🗑️</button>
-        </td>
-      </tr>
-    </table>
-  </div>
+    <!-- ========== DEPARTMENTS ========== -->
+    <div class="tab-card" *ngIf="activeTab==='departments'">
+        <div class="tab-header">
+            <h3>Departments</h3>
+            <button class="btn-primary" (click)="openAddDepartment()">+ Add Department</button>
+        </div>
 
-  <!-- ================= DEPARTMENTS ================= -->
-  <div class="tab-card" *ngIf="activeTab==='departments'">
+        <div class="create-box" *ngIf="showDepartmentForm">
+            <input [(ngModel)]="departmentName" placeholder="Department name">
+            <div class="actions">
+                <button class="btn-primary" *ngIf="!editingDepartmentId" (click)="saveDepartment()">Save</button>
+                <button class="btn-primary" *ngIf="editingDepartmentId" (click)="updateDepartment()">Update</button>
+                <button class="btn-secondary" (click)="cancelDepartment()">Cancel</button>
+            </div>
+        </div>
 
-    <div class="tab-header">
-      <h3>Departments</h3>
-      <button class="btn-primary" (click)="openAddDepartment()">+ Add Department</button>
+        <table class="masters-table" *ngIf="!showDepartmentForm">
+            <tr *ngFor="let item of departments">
+                <td>{{item.name}}</td>
+                <td>Active</td>
+                <td>
+                    <button (click)="editDepartment(item)">✏️</button>
+                    <button (click)="deleteDepartment(item.id)">🗑️</button>
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <div class="create-box" *ngIf="showDepartmentForm">
-      <input type="text" [(ngModel)]="departmentName" placeholder="Department name">
+    <!-- ========== DESIGNATIONS ========== -->
+    <div class="tab-card" *ngIf="activeTab==='designations'">
+        <div class="tab-header">
+            <h3>Designations</h3>
+            <button class="btn-primary" (click)="openAddDesignation()">+ Add Designation</button>
+        </div>
 
-      <div class="actions">
-        <button class="btn-primary"
-                *ngIf="!editingDepartmentId"
-                (click)="saveDepartment()">Save</button>
+        <div class="create-box" *ngIf="showDesignationForm">
+            <input [(ngModel)]="designationName" placeholder="Designation name">
+            <div class="actions">
+                <button class="btn-primary" *ngIf="!editingDesignationId" (click)="saveDesignation()">Save</button>
+                <button class="btn-primary" *ngIf="editingDesignationId" (click)="updateDesignation()">Update</button>
+                <button class="btn-secondary" (click)="cancelDesignation()">Cancel</button>
+            </div>
+        </div>
 
-        <button class="btn-primary"
-                *ngIf="editingDepartmentId"
-                (click)="updateDepartment()">Update</button>
-
-        <button class="btn-secondary" (click)="cancelDepartment()">Cancel</button>
-      </div>
+        <table class="masters-table" *ngIf="!showDesignationForm">
+            <tr *ngFor="let item of designations">
+                <td>{{item.name}}</td>
+                <td>Active</td>
+                <td>
+                    <button (click)="editDesignation(item)">✏️</button>
+                    <button (click)="deleteDesignation(item.id)">🗑️</button>
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <table class="masters-table" *ngIf="!showDepartmentForm">
-      <tr *ngFor="let dept of departments">
-        <td>{{ dept.name }}</td>
-        <td><span class="status active">Active</span></td>
-        <td>
-          <button class="icon" (click)="editDepartment(dept)">✏️</button>
-          <button class="icon" (click)="deleteDepartment(dept.id)">🗑️</button>
-        </td>
-      </tr>
-    </table>
-  </div>
+    <!-- ========== BUSINESS UNITS ========== -->
+    <div class="tab-card" *ngIf="activeTab==='businessUnits'">
+        <div class="tab-header">
+            <h3>Business Units</h3>
+            <button class="btn-primary" (click)="openAddBusinessUnit()">+ Add Business Unit</button>
+        </div>
+
+        <div class="create-box" *ngIf="showBusinessUnitForm">
+            <input [(ngModel)]="businessUnitName" placeholder="Business unit name">
+            <div class="actions">
+                <button class="btn-primary" *ngIf="!editingBusinessUnitId" (click)="saveBusinessUnit()">Save</button>
+                <button class="btn-primary" *ngIf="editingBusinessUnitId" (click)="updateBusinessUnit()">Update</button>
+                <button class="btn-secondary" (click)="cancelBusinessUnit()">Cancel</button>
+            </div>
+        </div>
+
+        <table class="masters-table" *ngIf="!showBusinessUnitForm">
+            <tr *ngFor="let item of businessUnits">
+                <td>{{item.name}}</td>
+                <td>Active</td>
+                <td>
+                    <button (click)="editBusinessUnit(item)">✏️</button>
+                    <button (click)="deleteBusinessUnit(item.id)">🗑️</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </div>
