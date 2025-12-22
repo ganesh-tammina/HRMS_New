@@ -21,7 +21,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { EmployeeInterceptorInterceptor } from './service/employee-interceptor.interceptor';
 import { HomeComponent } from './home/home.component';
-
+import { addIcons } from 'ionicons';
+import * as allIcons from 'ionicons/icons';
+addIcons(allIcons);
 @NgModule({
   declarations: [
     AppComponent,
