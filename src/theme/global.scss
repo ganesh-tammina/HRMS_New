@@ -47,7 +47,9 @@ html, body {
 :host {
     font-family: 'Open Sans';
 }
-
+ion-content::part(scroll) {
+  height: 100vh;
+}
 ion-split-pane{
     --side-min-width: 70px !important;
     --side-max-width: 100px !important;
